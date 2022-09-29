@@ -4,20 +4,21 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.fox.cryptocoinapp.databinding.ActivityCoinPrceListBinding
+import com.fox.cryptocoinapp.databinding.ActivityCoinPriceListBinding
+
 import com.fox.cryptocoinapp.domain.CoinInfo
 import com.fox.cryptocoinapp.presentation.adapter.CoinInfoAdapter
 
 class CoinPriceListActivity : AppCompatActivity() {
 
-    private  var _binding: ActivityCoinPrceListBinding? = null
+    private  var _binding: ActivityCoinPriceListBinding? = null
     private val binding get () = _binding!!
 
     private lateinit var viewModel: CoinViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityCoinPrceListBinding.inflate(layoutInflater)
+        _binding = ActivityCoinPriceListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val adapter = CoinInfoAdapter(this)
@@ -37,5 +38,8 @@ class CoinPriceListActivity : AppCompatActivity() {
         })
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
