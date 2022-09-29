@@ -2,15 +2,12 @@ package com.fox.cryptocoinapp.presentation.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fox.cryptocoinapp.R
-import com.fox.cryptocoinapp.data.network.ApiFactory.BASE_IMAGE_URL
-import com.fox.cryptocoinapp.databinding.ActivityCoinPrceListBinding
+import com.fox.cryptocoinapp.data.mapper.CoinMapper.Companion.BASE_IMAGE_URL
 import com.fox.cryptocoinapp.databinding.ItemCoinInfoBinding
 import com.fox.cryptocoinapp.domain.CoinInfo
-import com.fox.cryptocoinapp.utils.convertTimestampToTime
 import com.squareup.picasso.Picasso
 
 class CoinInfoAdapter(private val context: Context) :
@@ -43,8 +40,8 @@ class CoinInfoAdapter(private val context: Context) :
                 binding.tvSymbols.text = String.format(symbolsTemplate, fromSymbol, toSymbol)
                 binding.tvPrice.text = price
                 binding.tvLastUpdate.text =
-                    String.format(lastUpdateTemplate, convertTimestampToTime(lastUpdate))
-                Picasso.get().load(BASE_IMAGE_URL + imageUrl).into(binding.ivLogoCoin)
+                    String.format(lastUpdateTemplate, lastUpdate)
+                Picasso.get().load(imageUrl).into(binding.ivLogoCoin)
                 itemView.setOnClickListener {
                     onCoinClickListener?.onCoinClick(this)
                 }

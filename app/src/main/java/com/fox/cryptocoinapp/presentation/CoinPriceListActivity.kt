@@ -4,13 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.fox.cryptocoinapp.R
-import com.fox.cryptocoinapp.data.network.ApiFactory.BASE_IMAGE_URL
 import com.fox.cryptocoinapp.databinding.ActivityCoinPrceListBinding
 import com.fox.cryptocoinapp.domain.CoinInfo
 import com.fox.cryptocoinapp.presentation.adapter.CoinInfoAdapter
-import com.fox.cryptocoinapp.utils.convertTimestampToTime
-import com.squareup.picasso.Picasso
 
 class CoinPriceListActivity : AppCompatActivity() {
 
