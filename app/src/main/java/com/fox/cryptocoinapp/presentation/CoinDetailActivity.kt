@@ -6,14 +6,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.fox.cryptocoinapp.R
 import com.fox.cryptocoinapp.databinding.ActivityCoinDetailBinding
 import com.squareup.picasso.Picasso
 
 class CoinDetailActivity : AppCompatActivity() {
+
     private var _binding: ActivityCoinDetailBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var viewModel: CoinViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,19 +24,12 @@ class CoinDetailActivity : AppCompatActivity() {
             return
         }
         val fromSymbol = intent.getStringExtra(EXTRA_FROM_SYMBOL) ?: EMPTY_SYMBOL
-        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
-        viewModel.getDetailInfo(fromSymbol).observe(this, Observer {
-            with(binding) {
-                tvPrice.text = it.price
-                tvMinPrice.text = it.lowDay
-                tvMaxPrice.text = it.highDay
-                tvLastMarket.text = it.lastMarket
-                tvLastUpdate.text = it.lastUpdate
-                tvFromSymbol.text = it.fromSymbol
-                tvToSymbol.text = it.toSymbol
-                Picasso.get().load(it.imageUrl).into(ivLogoCoin)
-            }
-        })
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container, CoinDetailFragment.newInstance(fromSymbol))
+                .commit()
+        }
     }
 
     companion object {
