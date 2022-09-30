@@ -1,10 +1,7 @@
 package com.fox.cryptocoinapp.data.workers
 
 import android.content.Context
-import androidx.work.CoroutineWorker
-import androidx.work.OneTimeWorkRequest
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkerParameters
+import androidx.work.*
 import com.fox.cryptocoinapp.data.database.AppDatabase
 import com.fox.cryptocoinapp.data.database.CoinInfoDao
 import com.fox.cryptocoinapp.data.mapper.CoinMapper
@@ -13,8 +10,9 @@ import com.fox.cryptocoinapp.data.network.ApiService
 import kotlinx.coroutines.delay
 import javax.inject.Inject
 
-class RefreshDataWorker @Inject constructor(
-    context: Context, workerParameters: WorkerParameters,
+class RefreshDataWorker (
+    context: Context,
+    workerParameters: WorkerParameters,
     private val coinInfoDao: CoinInfoDao,
     private val mapper: CoinMapper,
     private val apiService: ApiService
@@ -41,6 +39,22 @@ class RefreshDataWorker @Inject constructor(
 
         fun makeRequest(): OneTimeWorkRequest {
             return OneTimeWorkRequestBuilder<RefreshDataWorker>().build()
+        }
+    }
+
+    class Factory @Inject constructor(
+        private val coinInfoDao: CoinInfoDao,
+        private val mapper: CoinMapper,
+        private val apiService: ApiService
+    ): ChildWorkerFactory {
+        override fun crate(context: Context, workerParameters: WorkerParameters): ListenableWorker {
+            return RefreshDataWorker(
+                context,
+                workerParameters,
+                coinInfoDao,
+                mapper,
+                apiService
+            )
         }
     }
 }

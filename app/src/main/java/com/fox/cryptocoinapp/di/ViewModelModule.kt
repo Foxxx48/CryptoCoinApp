@@ -8,10 +8,9 @@ import dagger.multibindings.IntoMap
 
 @Module
 interface ViewModelModule {
-
+    @Binds
     @IntoMap
     @ViewModelKey(CoinViewModel::class)
-    @Binds
     fun bindCoinViewModel(Impl: CoinViewModel): ViewModel
 
 }
