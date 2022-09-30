@@ -8,8 +8,9 @@ import com.fox.cryptocoinapp.R
 import com.fox.cryptocoinapp.databinding.ItemCoinInfoBinding
 import com.fox.cryptocoinapp.domain.CoinInfo
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
-class CoinInfoAdapter(
+class CoinInfoAdapter @Inject constructor(
     private val context: Context
 ) : ListAdapter<CoinInfo, CoinInfoViewHolder>(CoinInfoDiffCallback) {
 

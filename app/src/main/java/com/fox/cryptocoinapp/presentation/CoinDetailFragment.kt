@@ -1,5 +1,6 @@
 package com.fox.cryptocoinapp.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.fox.cryptocoinapp.CoinApp
 import com.fox.cryptocoinapp.databinding.FragmentCoinDetailBinding
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
 
 class CoinDetailFragment : Fragment() {
@@ -16,7 +19,19 @@ class CoinDetailFragment : Fragment() {
     private var _binding: FragmentCoinDetailBinding? = null
     private val binding get() = _binding ?: throw RuntimeException("FragmentCoinDetailBinding is null")
 
-    private lateinit var viewModel: CoinViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val myComponent by lazy {
+        (requireActivity().application as CoinApp).myComponent
+//            .activityComponentFactory()
+//            .create()
+    }
+
+    override fun onAttach(context: Context) {
+        myComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,8 +45,8 @@ class CoinDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val fromSymbol = getSymbol()
-        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
-        viewModel.getDetailInfo(fromSymbol).observe(viewLifecycleOwner, Observer {
+        val coinViewModel = ViewModelProvider(this, viewModelFactory)[CoinViewModel::class.java]
+        coinViewModel.getDetailInfo(fromSymbol).observe(viewLifecycleOwner, Observer {
             with(binding) {
                 tvPrice.text = it.price
                 tvMinPrice.text = it.lowDay

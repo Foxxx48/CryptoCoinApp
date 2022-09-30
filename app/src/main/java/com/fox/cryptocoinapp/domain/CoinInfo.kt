@@ -1,7 +1,9 @@
 package com.fox.cryptocoinapp.domain
 
+import javax.inject.Inject
 
-data class CoinInfo(
+
+data class CoinInfo @Inject constructor(
     val fromSymbol: String,
     val toSymbol: String?,
     val price: String?,

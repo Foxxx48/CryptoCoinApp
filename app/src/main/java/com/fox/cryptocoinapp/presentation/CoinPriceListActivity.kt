@@ -4,21 +4,35 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.fox.cryptocoinapp.CoinApp
 import com.fox.cryptocoinapp.R
 import com.fox.cryptocoinapp.databinding.ActivityCoinPriceListBinding
 
 import com.fox.cryptocoinapp.domain.CoinInfo
 import com.fox.cryptocoinapp.presentation.adapter.CoinInfoAdapter
+import javax.inject.Inject
 
 class CoinPriceListActivity : AppCompatActivity() {
 
     private  var _binding: ActivityCoinPriceListBinding? = null
     private val binding get () = _binding!!
 
-    private lateinit var viewModel: CoinViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+
+
+    private val myComponent by lazy {
+        (application as CoinApp).myComponent
+//            .activityComponentFactory()
+//            .create()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        myComponent.inject(this)
+
         super.onCreate(savedInstanceState)
+
         _binding = ActivityCoinPriceListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -35,8 +49,8 @@ class CoinPriceListActivity : AppCompatActivity() {
         binding.rvCoinPriceList.adapter = adapter
 //      If not need animation in recyclerView
         binding.rvCoinPriceList.itemAnimator = null
-        viewModel = ViewModelProvider(this)[CoinViewModel::class.java]
-        viewModel.coinInfoList.observe(this, Observer {
+        val coinViewModel = ViewModelProvider(this, viewModelFactory)[CoinViewModel::class.java]
+        coinViewModel.coinInfoList.observe(this, Observer {
             adapter.submitList(it)
         })
     }
