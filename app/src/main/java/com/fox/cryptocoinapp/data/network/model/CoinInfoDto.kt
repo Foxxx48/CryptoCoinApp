@@ -127,12 +127,3 @@ data class CoinInfoDto(
     @Expose
     val imageUrl: String?
 )
-//{
-//    fun getFormattedTime(): String {
-//        return convertTimestampToTime(lastUpdate)
-//    }
-//
-//    fun getFullImageUrl(): String {
-//        return BASE_IMAGE_URL + imageUrl
-//    }
-//}
