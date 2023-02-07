@@ -41,6 +41,6 @@ class CoinInfoAdapter(
     }
 
     interface OnCoinClickListener {
-        fun onCoinClick(coinPriceInfo: CoinInfo)
+        fun onCoinClick(coinInfo: CoinInfo)
     }
 }
