@@ -4,7 +4,7 @@ An application that displays a list of cryptocurrencies updates the data every 1
 It is possible to view each cryptocurrency in detail.
 
 ### Languages and Tools:
-<img align="left" alt="Kotlin" width="48px" hight="48px" src="https://github.com/devicons/devicon/blob/master/icons/kotlin/kotlin-original.svg" style="padding-right:10px;" />
+<img align="left" alt="Kotlin" width="64px" hight="64px" src="https://github.com/devicons/devicon/blob/master/icons/kotlin/kotlin-original.svg" style="padding-right:10px;" />
 <img align="left" alt="Android Studio" width="64px" hight="64px" src="https://github.com/devicons/devicon/blob/master/icons/androidstudio/androidstudio-original.svg" style="padding-right:10px;" />
 
 <br />
@@ -20,3 +20,4 @@ It is possible to view each cryptocurrency in detail.
 - Cryptocurrencies API
 - Dagger
 - Picasso
+- Worker
