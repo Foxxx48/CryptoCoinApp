@@ -20,4 +20,4 @@ It is possible to view each cryptocurrency in detail.
 - Cryptocurrencies API
 - Dagger
 - Picasso
-- Worker
+- CoroutineWorker
