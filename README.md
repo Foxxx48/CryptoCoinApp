@@ -9,6 +9,7 @@ It is possible to view each cryptocurrency in detail.
 
 <br />
 <br />
+<br />
 
 ### Technology stack:
 - Kotlin
@@ -21,3 +22,16 @@ It is possible to view each cryptocurrency in detail.
 - Dagger
 - Picasso
 - CoroutineWorker
+
+### UI Example:
+<p>
+  <img alt="ScreenShot Coin App 1" width="200px" hight="400px"  src="https://github.com/Foxxx48/CryptoCoinApp/assets/85708455/4960371d-72c4-4ff7-9a8d-07f15cc28499"/>
+  <img alt="ScreenShot Coin App 2" width="200px" hight="400px"  src="https://github.com/Foxxx48/CryptoCoinApp/assets/85708455/30e02a22-b290-4480-9605-cc941c5e7d1f"/>
+</p>
+
+
+
+
+
+
+
