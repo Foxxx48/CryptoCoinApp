@@ -12,6 +12,7 @@ It is possible to view each cryptocurrency in detail.
 <br />
 
 ### Technology stack:
+- Android SDK
 - Kotlin
 - MVVM
 - Kotlin Coroutines
